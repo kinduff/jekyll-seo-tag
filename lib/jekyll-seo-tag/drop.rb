@@ -103,6 +103,13 @@ module Jekyll
         @json_ld ||= JSONLDDrop.new(self)
       end
 
+      # Should the images tags be generated for this page?
+      def image?
+        return @display_image if defined?(@display_image)
+
+        @display_image = (@text !~ %r!image=false!i)
+      end
+
       # Returns a Drop representing the page's image
       # Returns nil if the image has no path, to preserve backwards compatability
       def image

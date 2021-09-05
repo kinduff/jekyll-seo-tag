@@ -418,6 +418,14 @@ RSpec.describe Jekyll::SeoTag::Drop do
     let(:image) { "foo.png" }
     let(:page_meta) { { "image" => image } }
 
+    context "with image=false" do
+      let(:text) { "image=false" }
+
+      it "knows not to include images" do
+        expect(subject.image?).to be_falsy
+      end
+    end
+
     it "returns a Drop" do
       expect(subject.image).to be_a(Jekyll::SeoTag::ImageDrop)
     end
